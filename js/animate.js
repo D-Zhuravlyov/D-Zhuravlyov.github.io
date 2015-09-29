@@ -5,5 +5,5 @@ $(document).ready(function() {
     $('.profile').on('mouseleave', function() {
     $(this).find('.more').removeClass('visible');
   });
-  
+	
 });
