@@ -155,7 +155,7 @@
 			.row.\35 0\25 > * {
 				/* padding: (gutters.horizontal) 0 0 (gutters.vertical) */
 				padding: 0 0 0 1em;
-			}
+				}
 
 			.row.\35 0\25 {
 				/* margin: -(gutters.horizontal) 0 -1px -(gutters.vertical) */
