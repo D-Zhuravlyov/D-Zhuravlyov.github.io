@@ -88,7 +88,7 @@
 
 			.row > * {
 				/* padding: (gutters.horizontal) 0 0 (gutters.vertical) */
-
+				padding: 0;
 			}
 
 			.row {
