@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta charset="UTF-8">
+		<title>Dmitry Zhuravlyov's Web-page | Test task.</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="Personal page of Java developer Zhuravlyov Dmitry" />
+		<meta name="keywords" content="Java, Web" />
+		<meta content="images/logo.jpg" property="og:image">
+		<link rel="image_src" href="./images/logo.jpg" />
+
+
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<script src="js/animate.js"></script>
+		<script src="js/backBn/underscore-min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+        <script src="js/backBn/backbone-min.js"></script>
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
+
+
+		<noscript>
+
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+
+		</noscript>
+	</head>
+	<body class="landing">
+
+		<!-- Header -->
+			<header id="header" class="dark">
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html#feedback">Feedback</a></li>
+						<li><a href="index.html#skills">Skills</a></li>
+						<li><a href="index.html#footer">Contacts</a></li>
+					</ul>
+				</nav>
+			</header>
+
+
+			<section>
+				<script type="text/template" id="login_template">
+                        <div class="row">
+                            <div class="\36 6u$ u\24 -3u" id="input">
+                                <div class="field">
+				            <h3>Login Form</h3>
+                                    </div>
+				<form method="post" action="#">
+				<div class="field">
+				<input type="text" name="login" id="login" value="" placeholder="Login">
+				</div>
+				<div class="field">
+				<input type="password" name="password" id="password" value="" placeholder="Password">
+				</div>
+				<div class="field">
+				<ul class="actions">
+				    <li><input type="submit" value="Submit Login" class="special"></li>
+				</ul>
+				</div>
+				</form>
+				</div>
+    </div>
+</script>
+
+<div id="login_container"></div>
+
+<script type="text/javascript">
+  var LoginView = Backbone.View.extend({
+    initialize: function(){
+      this.render();
+    },
+    render: function(){
+      // Compile the template using underscore
+      var template = _.template( $("#login_template").html());
+      // Load the compiled HTML into the Backbone "el"
+      this.$el.html( template );
+    },
+    events: {
+      "click input[type=submit]": "doLogin"
+    },
+    doLogin: function( event ){
+        var loginData = new LoginData({ login: $("#login").val(),
+                                    password: CryptoJS.HmacSHA1($("#password").val(), "secret_passphrase")});
+        loginData.save({}, {
+        success: function (model, respose, options) {
+            alert(loginData.get("login"));
+        console.log("The model has been saved to the server");
+        },
+        error: function (model, xhr, options) {
+        console.log("Something went wrong while saving the model") 
+        }
+        })
+    },
+     
+  });
+  
+
+  var login_view = new LoginView({ el: $("#login_container") });
+</script>
+    
+<script type="text/javascript">
+var LoginData = Backbone.Model.extend({
+  defaults: {
+    login: '',
+    password:'',
+  },
+  initialize: function(){
+    console.log("LoginData model initialized");
+  }
+});
+</script>
+</section>
+	</body>
+</html>
