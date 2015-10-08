@@ -89,6 +89,7 @@
     doLogin: function( event ){
         var loginData = new LoginData({ login: $("#login").val(),
                                     password: CryptoJS.HmacSHA1($("#password").val(), "secret_passphrase")});
+        console.log("Login data: "+ loginData.get("login")+", "+loginData.get("password"));
         loginData.save({}, {
         success: function (model, respose, options) {
             alert(loginData.get("login"));
